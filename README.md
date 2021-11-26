@@ -11,8 +11,7 @@
 ```
 ```
 >> ### Stopping criteria.
-```
-```
+>> ``` ```
 >> ### Fitness function.
 ```
 ```
