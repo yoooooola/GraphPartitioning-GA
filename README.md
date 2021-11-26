@@ -1,9 +1,9 @@
 # README
-a. Justification of why you have chosen your topic.
+###a. Justification of why you have chosen your topic.
 
-b. What is the topic?
+###b. What is the topic?
 
-c. Design decision explaining why you select:
+###c. Design decision explaining why you select:
 
   1. Parameters such as the size of an initial population.
 
@@ -19,6 +19,6 @@ c. Design decision explaining why you select:
 
   7. Generational selection strategy.
 
-d. How to run your project.
+###d. How to run your project.
 
-e. How to adjust parameters.
+###e. How to adjust parameters.
