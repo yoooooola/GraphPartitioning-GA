@@ -1,36 +1,36 @@
 # README
 
-## a. Justification of why you have chosen your topic.
+> ## a. Justification of why you have chosen your topic.
 ```
 ```
-## b. What is the topic?
+> ## b. What is the topic?
 ```
 ```
-## c. Design decision explaining why you select
-  ### * Parameters such as the size of an initial population.
-  ```
-  ```
-  ### Stopping criteria.
-  ```
-  ```
-  ### Fitness function.
-  ```
-  ```
-  ### Selection operator.
-  ```
-  ```
-  ### Crossover operator.
-  ```
-  ```
-  ### Mutation operator.
-  ```
-  ```
-  ### Generational selection strategy.
-  ```
-  ```
-## d. How to run your project.
+> ## c. Design decision explaining why you select
+>> ### * Parameters such as the size of an initial population.
 ```
 ```
-## e. How to adjust parameters.
+>> ### Stopping criteria.
+```
+```
+>> ### Fitness function.
+```
+```
+>> ### Selection operator.
+```
+```
+>> ### Crossover operator.
+```
+```
+>> ### Mutation operator.
+```
+```
+>> ### Generational selection strategy.
+```
+```
+> ## d. How to run your project.
+```
+```
+> ## e. How to adjust parameters.
 ```
 ```
