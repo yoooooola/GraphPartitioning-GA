@@ -1,11 +1,12 @@
 # README
-### a. Justification of why you have chosen your topic.
 
-### b. What is the topic?
+## a. Justification of why you have chosen your topic.
 
-### c. Design decision explaining why you select:
+## b. What is the topic?
 
-  #### Parameters such as the size of an initial population.
+## c. Design decision explaining why you select:
+
+  ### * Parameters such as the size of an initial population.
 
   ### Stopping criteria.
 
