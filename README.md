@@ -47,7 +47,7 @@
 > ```
 >> ### Mutation operator.
 > ```
-> By the given probability, The node randomly chosen from partition 1 will be exchanged with the node randomly chosen from partition 2.
+> By the given probability, the node randomly chosen from partition 1 will be exchanged with the node randomly chosen from partition 2.
 > ```
 >> ### Generational selection strategy.
 > ```
