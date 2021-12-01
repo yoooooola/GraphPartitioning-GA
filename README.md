@@ -25,19 +25,19 @@
 > - Number of nodes: 
 > - Number of edges: 
 > - Mutation Rate: 0.05
-> - Number of fitness evaluations: 100
+> - Stopping criteria: 10
 > - Crossover Rate: 
 > - Number of random individuals in selection (k)
 > ```
 >> ### Stopping criteria.
 > ```
-> Fixed number of fitness evaluations.
-> In this program, the number will be fixed as 100.
+> If there's no improvement within 10 times, the program will be terminated.
 > ```
 >> ### Fitness function.
 > ```
 > Fitness will be calculated by the cut size [minimizing]
 > The cut is the set of edges between the partitions.
+> + to-do: add equation +
 > ```
 >> ### Selection operator.
 > ```
@@ -50,7 +50,7 @@
 > ```
 >> ### Mutation operator.
 > ```
-> Replacing one node in a tree with a different, compatible type
+> Replacing one node in a graph with a different, compatible type
 > : The node randomly chosen from partition 1 will be exchanged with the node randomly chosen from partition 2.
 > ```
 >> ### Generational selection strategy.
