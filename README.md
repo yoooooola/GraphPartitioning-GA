@@ -8,7 +8,7 @@
 > 
 > 2. The paper contains the experiment, which can be conducted by beginner of graph partitioning problem, compared to other recent papers.
 > 
-> Moreover, I'm currently working on the topic related to graph, so this topic will be helpful to apply GA to my research someday. Therefore, I choose this topic and the paper as the reference.
+> Moreover, I'm currently working on the topic related to graph, so this topic will be helpful to adapt GA to my research someday. Therefore, I choose this topic and the paper as the reference.
 > 
 > (Paper link: https://www.sciencedirect.com/science/article/pii/S0895717703901348)
 >
@@ -36,7 +36,7 @@
 > ```
 >> ### Fitness function.
 > ```
-> Fitness will be calculated by the cut size.
+> Fitness will be calculated by the cut size [minimizing]
 > The cut is the set of edges between the partitions.
 > ```
 >> ### Selection operator.
