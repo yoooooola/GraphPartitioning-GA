@@ -46,7 +46,7 @@
 > ```
 >> ### Crossover operator.
 > ```
-> Offsprings inherit genes from their parents, but not in identical forms.
+> Single point crossover
 > ```
 >> ### Mutation operator.
 > ```
