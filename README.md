@@ -1,4 +1,4 @@
-# README
+# Genetic Algorithm for Graph Partitioning
 
 > ## a. Justification of why you have chosen your topic.
 > Graph partioning is a one of the NP-hard combinatorial optimization problems. We can find many papers applying genetic algorithm to the graph partiioning problem.
@@ -36,7 +36,8 @@
 > ```
 >> ### Fitness function.
 > ```
-> Fitness will be calculated by the cut size. The cut is the set of edges between the partitions.
+> Fitness will be calculated by the cut size.
+> The cut is the set of edges between the partitions.
 > ```
 >> ### Selection operator.
 > ```
