@@ -2,7 +2,7 @@
 
 > ## a. Justification of why you have chosen your topic.
 > Graph partioning is a one of the NP-hard combinatorial optimization problems. We can find many papers applying genetic algorithm to the graph partiioning problem.
-> Among those papers, I decided to apply the method from the journal paper "Performance of a Genetic Algorithm for the Graph Partitioning Problem (2003)" written by K. Kohmoto et al. The method suggested in the paper can be applied to our term project with two reasons below. 
+> Among those papers, I decided to apply the method from the journal paper "Genetic Algorithm and Graph Partitioning" written by Thang Nguyen Bui and Byung Ro Moon. The method suggested in the paper can be applied to our term project with two reasons below. 
 > 
 > 1. The paper provides the description of the genetic algorithm and essential functions (mutation operator, crossover operator and else) for the graph partitioning.
 > 
@@ -10,7 +10,7 @@
 > 
 > Moreover, I'm currently working on the topic related to graph, so this topic will be helpful to adapt GA to my research someday. Therefore, I choose this topic and the paper as the reference.
 > 
-> (Paper link: https://www.sciencedirect.com/science/article/pii/S0895717703901348)
+> (Paper link: https://ieeexplore.ieee.org/abstract/document/508322)
 >
 >
 > ## b. What is the topic?
@@ -19,45 +19,92 @@
 > To given an undirected graph G = (V, E) where V is the set of n nodes and E is the set of edges between the nodes, it divides the graph into two disjoint subsets of nodes v1 and v2 so that the number of edges between the nodes in the different subsets is minimized, and the sizes of the subsets are equal.
 > 
 > ## c. Design decision explaining why you select
->> ### Parameters such as the size of an initial population.
+>> ### Parameters
+> There are 5 parameters in the program.
 > ```
-> - Initial Population: 100
-> - Number of nodes: 
-> - Number of edges: 
-> - Mutation Rate: 0.05
-> - Stopping criteria: 10
-> - Crossover Rate: 
-> - Number of random individuals in selection (k)
+> POP_SIZE = 100 
+> NUM_NODES = 100
+> MUT_PROB = 0.05
+> STOPPING_COUNT = 20
+> K_IND = int(POP_SIZE * 0.1)
 > ```
->> ### Stopping criteria.
+> * **POP_SIZE**
+>     * Initial population size
+>     * Type : INT
+>     * Range : (1, )
+>     
+> * **NUM_NODES**
+>     * The number of nodes in the graph which will be generated randomly.
+>     * It should be an **even number**.
+>     * Type : INT
+>     * Range : (2, )
+>     
+> * **MUT_PROB**
+>     * The probability to execute mutation
+>     * Type : FLOAT
+>     * Range : [0, 1]
+>     
+> * **STOPPING_COUNT**
+>     * Stopping criteria
+>     * If there is no improvement within STOPPING_COUNT times, the program will be terminated.
+>     * Type : INT
+>     * Range : (1, )
+>
+> * **K_IND**
+>     * How many individuals are selected for the tournament
+>     * Type : INT
+>     * Range : (1, )
+> -----    
+>> ### Stopping criteria
+> * If there's **no improvement within 20 times**, the program will be terminated.
+> * How many times you accept it without the improvement can be adjusted with the parameter _**STOPPING_COUNT**_.
+> -----
+>> ### Fitness function
+> * Fitness of each individual will be calculated by the equation below.
+> 
+>     ![image](https://user-images.githubusercontent.com/39353959/144560378-1a212d1c-31d5-47ef-b454-26152de7df78.png)
+> 
+>     * ![image](https://user-images.githubusercontent.com/39353959/144559997-3e08aae1-870f-4f67-a792-2005a7bf3bfb.png) : cut size of the worst solution in the population
+>     * ![image](https://user-images.githubusercontent.com/39353959/144560079-36b87173-76a5-488a-ac56-1296ba0945bf.png) : cut size of the best solution in the population
+>     * ![image](https://user-images.githubusercontent.com/39353959/144560056-0ce62c13-045b-4950-b04c-b6d113fae90d.png) : cut size of solution i.
+> 
+>     The cut is the set of edges between the partitions.
+> 
+> -----
+>> ### Selection operator
+> * **Tournament selection**
+>     * Select k random individuals from the population and pick the best out of them
+>     * random number k can be adjusted with the parameter _**K_IND**_
+>     
+>     ![image](https://user-images.githubusercontent.com/39353959/144561003-982bf85d-bd1b-41ef-a729-c76ed59bbea8.png)
+>     
+>     (© https://medium.com/pragmatic-programmers/implementing-common-selection-strategies-37c6f99795a6)
+> -----
+>> ### Crossover operator
+> * **Single point crossover**
+>     * From the tournament selection, two chromosomes are selected as parents.
+>     * The crossover point is selected randomly.
+>     * If the partitions of new offspring don't have the same size, the offspring will be **discarded**.
+>
+>     ![image](https://user-images.githubusercontent.com/39353959/144567449-f3ae5d99-c859-4276-acb8-7989a5faecbf.png)
+>
 > ```
-> If there's no improvement within 10 times, the program will be terminated.
+> ***
+> I'm planning to implement the multi-point crossover.
+> After the implementation, I will compare the performances of each crossover and decide which crossover to use.
+> ***
 > ```
->> ### Fitness function.
-> ```
-> Fitness will be calculated by the cut size [minimizing]
-> The cut is the set of edges between the partitions.
-> + to-do: add equation +
-> ```
->> ### Selection operator.
-> ```
-> Tournament selection
-> : Select k random individuals from the population and pick the best out of them
-> ```
->> ### Crossover operator.
-> ```
-> Single point crossover
-> ```
->> ### Mutation operator.
-> ```
-> Replacing one node in a graph with a different, compatible type
-> : The node randomly chosen from partition 1 will be exchanged with the node randomly chosen from partition 2.
-> ```
->> ### Generational selection strategy.
-> ```
-> Elitism
-> : Maintaining M best individuals from the parents' generation
-> ```
+> -----
+>> ### Mutation operator
+> * Replace one node in a graph with a different, compatible type.
+> * The node randomly chosen from partition 0 will be exchanged with the node randomly chosen from partition 1.
+>
+>![image](https://user-images.githubusercontent.com/39353959/144572243-bfc91655-baa3-436b-b1c5-aa941762bd38.png)
+>
+> -----
+>> ### Generational selection strategy
+> * **Elitism**
+>     * Maintaining M best individuals from the parents' generation
 > ## d. How to run your project.
 > ```
 > python main.py
