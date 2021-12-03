@@ -21,13 +21,7 @@
 > ## c. Design decision explaining why you select
 >> ### Parameters
 > There are 5 parameters in the program.
-> ```
-> POP_SIZE = 100 
-> NUM_NODES = 100
-> MUT_PROB = 0.05
-> STOPPING_COUNT = 20
-> K_IND = int(POP_SIZE * 0.1)
-> ```
+> 
 > * **POP_SIZE**
 >     * Initial population size
 >     * Type : INT
@@ -110,6 +104,13 @@
 > python main.py
 > ```
 > ## e. How to adjust parameters.
-> Parameters are defined as global variables in above of main.py.
-> So if you want to adjust parameters, you can do it by modifying the values of each parameters.
+> Parameters are defined as global variables in main.py.
+> ```
+> POP_SIZE = 100 
+> NUM_NODES = 100
+> MUT_PROB = 0.05
+> STOPPING_COUNT = 20
+> K_IND = int(POP_SIZE * 0.1)
+> ```
+> You can adjust the parameters by modifying the values of them.
 > 
