@@ -106,11 +106,11 @@
 > ## e. How to adjust parameters.
 > Parameters are defined as global variables in main.py.
 > ```
-> POP_SIZE = 100 
-> NUM_NODES = 100
+> POP_SIZE = 1000 
+> NUM_NODES = 200
 > MUT_PROB = 0.05
 > STOPPING_COUNT = 20
-> K_IND = int(POP_SIZE * 0.1)
+> K_IND = int(POP_SIZE * 0.25)
 > ```
 > You can adjust the parameters by modifying the values of them.
 > 
