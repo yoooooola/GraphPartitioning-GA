@@ -1,50 +1,14 @@
 """
-operation.py --- Operators for Genetic Algorithm
-- tournament: selection operator, using tournament selection
+operation.py --- Operators for Genetic Algorithm; generate new offsprings
 - mutation: mutation operator, exchanging indices from each partitions
 - crossover: crossover operator, single point crossover
 """
 
 import random as rd
 import copy
-import sys
-from src.evalutation import fitness
 
 
-# selection operator: tournament selection
-def tournament(pop, bestCut, worstCut, k):
-    copiedPop = copy.deepcopy(pop)
-
-    # tournament for parent 1
-    candidates = rd.choices(copiedPop, k=k)
-    bestFit = sys.maxsize
-    bestIdx = 0
-
-    for idx in range(len(candidates)):
-        currentFit = fitness(worstCut, bestCut, pop[idx])
-        if bestFit < currentFit:
-            bestFit = currentFit
-            bestIdx = idx
-
-    copiedPop.remove(copiedPop[bestIdx])
-    parent1 = copiedPop[bestIdx]
-
-    # tournament for parent 2
-    candidates = rd.choices(copiedPop, k=k)
-    bestFit = sys.maxsize
-    bestIdx = 0
-
-    for idx in range(len(candidates)):
-        currentFit = fitness(worstCut, bestCut, pop[idx])
-        if bestFit < currentFit:
-            bestFit = currentFit
-            bestIdx = idx
-
-    parent2 = copiedPop[bestIdx]
-
-    return parent1, parent2
-
-
+# Mutation
 def mutation(ind):
     mutatedInd = copy.deepcopy(ind)
 
@@ -60,7 +24,7 @@ def mutation(ind):
     return mutatedInd
 
 
-# single point cross-over
+# Single point cross-over
 def crossover(parent1, parent2):
     pivot = rd.choice(range(len(parent1)))
 
