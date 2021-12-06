@@ -1,5 +1,5 @@
 """
-utils.py --- Generating data
+utils.py --- Generating initial data
 - initGraph: generating initial target graph
 - genIndividual: generating each individuals with numNode (=NUM_NODE in main.py)
 - genPopulation: generating population with popSize (=POP_SIZE in main.py)
