@@ -101,6 +101,7 @@
 >     * Maintaining M best individuals from the parents' generation
 > ## d. How to run your project.
 > ```
+> cd src
 > python main.py
 > ```
 > ## e. How to adjust parameters.
