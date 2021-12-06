@@ -9,11 +9,11 @@ from utils import genPopulation, initGraph
 from operation import mutation, crossover
 
 # Global variables
-POP_SIZE = 500
-NUM_NODES = 150  # SHOULD BE AN EVEN NUMBER !!!
+POP_SIZE = 300
+NUM_NODES = 50  # SHOULD BE AN EVEN NUMBER !!!
 MUT_PROB = 0.05
 STOPPING_COUNT = 20
-K_IND = int(POP_SIZE * 0.25)  # tournament size: K individual
+K_IND = int(POP_SIZE * 0.1)  # tournament size: K individual
 
 # Generate random graph
 # 1. initGraph(NUM_NODES)
