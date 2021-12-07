@@ -12,12 +12,12 @@ import numpy as np
 
 
 # generate initial random graph (= target graph)
-def initGraph(numNode):
+def initGraph(numNode, connectProb):
     nodes = set([n for n in range(numNode)])
     edges = set()
     for combination in combinations(nodes, 2):
         tmp = rd.random()
-        if tmp < 0.25:
+        if tmp < connectProb:
             edges.add(combination)
 
     g = nx.Graph()
