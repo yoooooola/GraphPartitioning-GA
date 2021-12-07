@@ -12,6 +12,7 @@ from evaluation import getCutsize, fitness
 # Parameters; global variables
 POP_SIZE = 300
 NUM_NODES = 100  # SHOULD BE AN EVEN NUMBER !!!
+CONNECT_PROB = 0.25
 MUT_PROB = 0.05
 STOPPING_COUNT = 10
 K_IND = int(POP_SIZE * 0.1)  # tournament size: K individual
@@ -22,10 +23,10 @@ def main():
 
     """
     Generate random graph
-    1) initGraph(NUM_NODES)
+    1) initGraph(NUM_NODES, CONNECT_PROB)
     2) nx.gnp_random_graph from networkX library
     """
-    g = initGraph(NUM_NODES)
+    g = initGraph(NUM_NODES, CONNECT_PROB)
     print(">>> Graph Info (Node, Edge) : ", len(g.nodes()), len(g.edges()))
     #g = nx.gnp_random_graph(NUM_NODES, 0.6)
 
