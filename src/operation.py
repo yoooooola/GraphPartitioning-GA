@@ -6,6 +6,42 @@ operation.py --- Operators for Genetic Algorithm; generate new offsprings
 
 import random as rd
 import copy
+import sys
+from evaluation import fitness
+
+
+# Selection operator: tournament selection
+def tournament(pop, bestCut, worstCut, g, kInd):
+    copiedPop = copy.deepcopy(pop)
+
+    # tournament for parent 1
+    candidates = rd.choices(copiedPop, k=kInd)
+    bestFit = sys.maxsize
+    bestIdx = 0
+
+    for idx in range(len(candidates)):
+        currentFit, _ = fitness(worstCut, bestCut, g, pop[idx])
+        if bestFit < currentFit:
+            bestFit = currentFit
+            bestIdx = idx
+
+    copiedPop.remove(copiedPop[bestIdx])
+    parent1 = copiedPop[bestIdx]
+
+    # tournament for parent 2
+    candidates = rd.choices(copiedPop, k=kInd)
+    bestFit = sys.maxsize
+    bestIdx = 0
+
+    for idx in range(len(candidates)):
+        currentFit, _ = fitness(worstCut, bestCut, g, pop[idx])
+        if bestFit < currentFit:
+            bestFit = currentFit
+            bestIdx = idx
+
+    parent2 = copiedPop[bestIdx]
+
+    return parent1, parent2
 
 
 # Mutation
