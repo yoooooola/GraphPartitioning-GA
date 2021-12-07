@@ -104,14 +104,19 @@
 > cd src
 > python main.py
 > ```
+> ### Requirements
+> ```
+> networkx
+> numpy
+> ```
 > ## e. How to adjust parameters.
 > Parameters are defined as global variables in main.py.
 > ```
-> POP_SIZE = 1000 
-> NUM_NODES = 200
+> POP_SIZE = 300 
+> NUM_NODES = 100
 > MUT_PROB = 0.05
-> STOPPING_COUNT = 20
-> K_IND = int(POP_SIZE * 0.25)
+> STOPPING_COUNT = 10
+> K_IND = int(POP_SIZE * 0.1)
 > ```
 > You can adjust the parameters by modifying the values of them.
 > 
