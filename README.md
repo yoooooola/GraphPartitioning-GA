@@ -25,29 +25,34 @@
 > * **POP_SIZE**
 >     * Initial population size
 >     * Type : INT
->     * Range : (1, )
+>     * Range : [1, INF)
 >     
 > * **NUM_NODES**
 >     * The number of nodes in the graph which will be generated randomly.
 >     * It should be an **even number**.
 >     * Type : INT
->     * Range : (2, )
+>     * Range : [2, INF)
+>
+> * **CONNECT_PROB**
+>     * The probability to connect two nodes with edge
+>     * Type : FLOAT
+>     * Range : [0., 1.)
 >     
 > * **MUT_PROB**
 >     * The probability to execute mutation
 >     * Type : FLOAT
->     * Range : [0, 1]
+>     * Range : [0., 1.)
 >     
 > * **STOPPING_COUNT**
 >     * Stopping criteria
 >     * If there is no improvement within STOPPING_COUNT times, the program will be terminated.
 >     * Type : INT
->     * Range : (1, )
+>     * Range : (1, INF)
 >
 > * **K_IND**
 >     * How many individuals are selected for the tournament
 >     * Type : INT
->     * Range : (1, )
+>     * Range : [1, NUM_NODES)
 > -----    
 >> ### Stopping criteria
 > * If there's **no improvement within 20 times**, the program will be terminated.
@@ -114,6 +119,7 @@
 > ```
 > POP_SIZE = 300 
 > NUM_NODES = 100
+> CONNECT_PROB = 0.25
 > MUT_PROB = 0.05
 > STOPPING_COUNT = 10
 > K_IND = int(POP_SIZE * 0.1)
