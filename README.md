@@ -104,7 +104,7 @@
 > cd src
 > python main.py
 > ```
-> ### Requirements
+>> ### Requirements
 > ```
 > networkx
 > numpy
