@@ -122,7 +122,7 @@ def main():
         print("Population Size : ", len(pop))
         genCount = genCount + 1
 
-        # fitness (high is good)
+        # fitness (low is good)
         currentFit, currentCut = fitness(worstCut, bestCut, pop[0])
 
         # print("Best Cut, Worst Cut, Current Cut: ", bestCut, worstCut, currentCut)
