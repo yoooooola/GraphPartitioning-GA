@@ -17,7 +17,7 @@ def initGraph(numNode):
     edges = set()
     for combination in combinations(nodes, 2):
         tmp = rd.random()
-        if tmp < 0.6:
+        if tmp < 0.25:
             edges.add(combination)
 
     g = nx.Graph()
