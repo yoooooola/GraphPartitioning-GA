@@ -1,5 +1,6 @@
 """
 operation.py --- Operators for Genetic Algorithm; generate new offsprings
+- tournament: selection operator, tournament selection
 - mutation: mutation operator, exchanging indices from each partitions
 - crossover: crossover operator, single point crossover
 """
