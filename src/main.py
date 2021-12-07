@@ -1,101 +1,36 @@
 import networkx as nx
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import random as rd
 from functools import partial
 import time
 import sys
 import copy
 from utils import genPopulation, initGraph
-from operation import mutation, crossover
+from operation import mutation, crossover, tournament
+from evaluation import getCutsize, fitness
 
-# Global variables
+# Parameters; global variables
 POP_SIZE = 300
-NUM_NODES = 50  # SHOULD BE AN EVEN NUMBER !!!
+NUM_NODES = 100  # SHOULD BE AN EVEN NUMBER !!!
 MUT_PROB = 0.05
-STOPPING_COUNT = 20
+STOPPING_COUNT = 10
 K_IND = int(POP_SIZE * 0.1)  # tournament size: K individual
-
-# Generate random graph
-# 1. initGraph(NUM_NODES)
-# 2. nx.gnp_random_graph from networkX library
-g = initGraph(NUM_NODES)
-# g = nx.gnp_random_graph(NUM_NODES, 0.6)
-
-# draw current graph
-nx.draw(g)
-
-# Calculate cut size 
-def calCut(pop, g):
-    cuts = []
-
-    for ind in pop:
-        part0 = [index for index in range(len(pop[0])) if ind[index] == 0]  # partition 0
-        part1 = [index for index in range(len(pop[0])) if ind[index] == 1]  # partition 1
-
-        g0 = g.subgraph(part0)
-        g1 = g.subgraph(part1)
-
-        cutSize = len(g.edges()) - (len(g0.edges()) + len(g1.edges()))
-        cuts.append(cutSize)
-
-    bestCut = min(cuts)
-    worstCut = max(cuts)
-
-    return bestCut, worstCut
-
-
-# Calculate fitness
-def fitness(worstCut, bestCut, ind):
-    part0 = [index for index in range(len(ind)) if ind[index] == 0]  # partition 0
-    part1 = [index for index in range(len(ind)) if ind[index] == 1]  # partition 1
-
-    g0 = g.subgraph(part0)
-    g1 = g.subgraph(part1)
-
-    curCut = len(g.edges()) - (len(g0.edges()) + len(g1.edges()))
-
-    value = (worstCut - curCut) + (worstCut - bestCut) / 3  # fitness calculation
-
-    return value, curCut
-
-
-# Selection operator: tournament selection
-def tournament(pop, bestCut, worstCut):
-    copiedPop = copy.deepcopy(pop)
-
-    # tournament for parent 1
-    candidates = rd.choices(copiedPop, k=K_IND)
-    bestFit = sys.maxsize
-    bestIdx = 0
-
-    for idx in range(len(candidates)):
-        currentFit, _ = fitness(worstCut, bestCut, pop[idx])
-        if bestFit < currentFit:
-            bestFit = currentFit
-            bestIdx = idx
-
-    copiedPop.remove(copiedPop[bestIdx])
-    parent1 = copiedPop[bestIdx]
-
-    # tournament for parent 2
-    candidates = rd.choices(copiedPop, k=K_IND)
-    bestFit = sys.maxsize
-    bestIdx = 0
-
-    for idx in range(len(candidates)):
-        currentFit, _ = fitness(worstCut, bestCut, pop[idx])
-        if bestFit < currentFit:
-            bestFit = currentFit
-            bestIdx = idx
-
-    parent2 = copiedPop[bestIdx]
-
-    return parent1, parent2
-
 
 # MAIN
 def main():
     start_time = time.time()
+
+    """
+    Generate random graph
+    1) initGraph(NUM_NODES)
+    2) nx.gnp_random_graph from networkX library
+    """
+    g = initGraph(NUM_NODES)
+    print(">>> Graph Info (Node, Edge) : ", len(g.nodes()), len(g.edges()))
+    #g = nx.gnp_random_graph(NUM_NODES, 0.6)
+
+    # draw current graph
+    # nx.draw(g)
 
     # Generate population
     pop = genPopulation(NUM_NODES, POP_SIZE)
@@ -104,9 +39,11 @@ def main():
     bestSoFar = sys.maxsize
     bestCutSize = sys.maxsize
     bestPartition = []
+    
+    bestCut, worstCut = getCutsize(pop, g)
+    eval_with = partial(fitness, worstCut, bestCut, g)
 
-    bestCut, worstCut = calCut(pop, g)
-    eval_with = partial(fitness, worstCut, bestCut)
+    initialCut = bestCut
 
     sortedPop = copy.deepcopy(sorted(pop, key=eval_with, reverse=True))
     pop = copy.deepcopy(sortedPop)
@@ -120,12 +57,11 @@ def main():
         print("Generation : ", genCount)
         print("Elapsed Time : ", time.time() - start_time)
         print("Population Size : ", len(pop))
+
         genCount = genCount + 1
 
         # fitness (low is good)
-        currentFit, currentCut = fitness(worstCut, bestCut, pop[0])
-
-        # print("Best Cut, Worst Cut, Current Cut: ", bestCut, worstCut, currentCut)
+        currentFit, currentCut = fitness(worstCut, bestCut, g, pop[0])
 
         # Update best-so-far
         if currentFit < bestSoFar:
@@ -134,10 +70,10 @@ def main():
             bestCutSize = currentCut
             bestPartition = pop[0]
 
-            print("==================================================")
-            print("Best Partition : ", bestPartition)
-            print("Best Cut Size : ", bestCutSize)
+            print("--------------------------------------------------")
             print("Best So Far (Fitness) : ", bestSoFar)
+            print("Best Cut Size : ", bestCutSize)
+            print("Best Partition : ", bestPartition)            
 
         # No improvement
         else:
@@ -147,7 +83,7 @@ def main():
 
         # Crossover
         for idx in range(int(POP_SIZE / 2)):
-            parent1, parent2 = tournament(pop, bestCut, worstCut)
+            parent1, parent2 = tournament(pop, bestCut, worstCut, g, K_IND)
             offspring1, offspring2 = crossover(parent1, parent2)
 
             if offspring1 not in nextPop and offspring1.count(0) == NUM_NODES / 2:
@@ -164,19 +100,21 @@ def main():
                     nextPop.append(mutInd)
 
         # Update eval_with
-        bestCut, worstCut = calCut(pop, g)
-        eval_with = partial(fitness, worstCut, bestCut)
+        bestCut, worstCut = getCutsize(pop, g)
+        eval_with = partial(fitness, worstCut, bestCut, g)
 
         pop = copy.deepcopy(sorted(nextPop, key=eval_with, reverse=True))
         pop = pop[:POP_SIZE]
 
     # GA Summary
-    print("-----SUMMARY-----")
+    print("----------SUMMARY----------")
     print("Total Elapsed Time : ", time.time() - start_time)
-    print("Best So Far (Fitness) : ", bestSoFar)
-    print("Best Cut Size : ", bestCutSize)
+    print("Generation Count: ", genCount)
+    print("Best Fitness : ", bestSoFar)
     print("Best Partition : ", bestPartition)
-
+    print("---------------------------")
+    print("Initial Cut Size : ", initialCut)
+    print("Final (Best) Cut Size : ", bestCutSize)
 
 if __name__ == "__main__":
     main()
