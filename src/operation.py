@@ -87,6 +87,6 @@ def multiCrossover(parent1, parent2):
 
     # second crossover operator
     complementParent = [int(not(parent2[i])) for i in range(len(parent2))]
-    offspring2 = parent1[:pivot[0]] + parent2[pivot[0]:pivot[1]] + parent1[pivot[1]:pivot[2]] + parent2[pivot[2]:pivot[3]] + parent1[pivot[3]:pivot[4]] + parent2[pivot[4]:]
+    offspring2 = parent1[:pivot[0]] + complementParent[pivot[0]:pivot[1]] + parent1[pivot[1]:pivot[2]] + complementParent[pivot[2]:pivot[3]] + parent1[pivot[3]:pivot[4]] + complementParent[pivot[4]:]
 
     return offspring1, offspring2
