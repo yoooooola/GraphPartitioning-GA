@@ -83,24 +83,16 @@
 > * **Multi-point crossover**
 >     * From the tournament selection, two chromosomes are selected as parents.
 >     * 5 cut points for crossover are selected randomly
->     * Offspring 1 and 2 will be generated in different way. (described in below image)
+>     * Offspring 1 and 2 will be generated in **different way** (described in below image).
 >     * If the partitions of new offspring don't have the same size, the offspring will be **discarded**
 >
 >     ![image](https://user-images.githubusercontent.com/39353959/145143001-adfedeac-33a1-42cd-8c68-956a236716b6.png)
 >
-> * **Single point crossover**
->     * From the tournament selection, two chromosomes are selected as parents.
->     * The crossover point is selected randomly.
->     * If the partitions of new offspring don't have the same size, the offspring will be **discarded**.
+> * ~~**Single point crossover**~~
+>     * ~~From the tournament selection, two chromosomes are selected as parents.~~
+>     * ~~The crossover point is selected randomly.~~
+>     * ~~If the partitions of new offspring don't have the same size, the offspring will be **discarded**.~~
 >
->     ![image](https://user-images.githubusercontent.com/39353959/144567449-f3ae5d99-c859-4276-acb8-7989a5faecbf.png)
->
-> ```
-> ***
-> I'm planning to implement the multi-point crossover.
-> After the implementation, I will compare the performances of each crossover and decide which crossover to use.
-> ***
-> ```
 > -----
 >> ### Mutation operator
 > * Replace one node in a graph with a different, compatible type.
