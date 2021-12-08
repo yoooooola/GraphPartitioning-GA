@@ -80,6 +80,9 @@
 >     (© https://medium.com/pragmatic-programmers/implementing-common-selection-strategies-37c6f99795a6)
 > -----
 >> ### Crossover operator
+> **I replaced single point crossover to multi-point crossover.**  
+> However, a single point crossover is still available.
+> 
 > * **Multi-point crossover**
 >     * From the tournament selection, two chromosomes are selected as parents.
 >     * 5 cut points for crossover are selected randomly
