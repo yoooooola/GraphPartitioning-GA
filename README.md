@@ -80,6 +80,14 @@
 >     (© https://medium.com/pragmatic-programmers/implementing-common-selection-strategies-37c6f99795a6)
 > -----
 >> ### Crossover operator
+> * **Multi-point crossover**
+>     * From the tournament selection, two chromosomes are selected as parents.
+>     * 5 cut points for crossover are selected randomly
+>     * Offspring 1 and 2 will be generated in different way. (described in below image)
+>     * If the partitions of new offspring don't have the same size, the offspring will be **discarded**
+>
+>     ![image](https://user-images.githubusercontent.com/39353959/145143001-adfedeac-33a1-42cd-8c68-956a236716b6.png)
+>
 > * **Single point crossover**
 >     * From the tournament selection, two chromosomes are selected as parents.
 >     * The crossover point is selected randomly.
@@ -107,21 +115,27 @@
 > ## d. How to run your project.
 > ```
 > cd src
-> python main.py
+> python3 main.py
 > ```
 >> ### Requirements
 > ```
+> python 3.x
 > networkx
 > numpy
 > ```
+>> **Installation**
+>> ```
+>> pip install networkx
+>> pip3 install numpy
+>> ```
 > ## e. How to adjust parameters.
 > Parameters are defined as global variables in main.py.
 > ```
 > POP_SIZE = 300 
 > NUM_NODES = 100
-> CONNECT_PROB = 0.25
+> CONNECT_PROB = 0.3
 > MUT_PROB = 0.05
-> STOPPING_COUNT = 10
+> STOPPING_COUNT = 20
 > K_IND = int(POP_SIZE * 0.1)
 > ```
 > You can adjust the parameters by modifying the values of them.
