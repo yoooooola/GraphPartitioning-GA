@@ -1,20 +1,19 @@
 import networkx as nx
-# import matplotlib.pyplot as plt
 import random as rd
 from functools import partial
 import time
 import sys
 import copy
 from utils import genPopulation, initGraph
-from operation import mutation, crossover, tournament
+from operation import multiCrossover, mutation, tournament, multiCrossover # , singleCrossover
 from evaluation import getCutsize, fitness
 
 # Parameters; global variables
 POP_SIZE = 300
 NUM_NODES = 100  # SHOULD BE AN EVEN NUMBER !!!
-CONNECT_PROB = 0.25
+CONNECT_PROB = 0.3
 MUT_PROB = 0.05
-STOPPING_COUNT = 10
+STOPPING_COUNT = 20
 K_IND = int(POP_SIZE * 0.1)  # tournament size: K individual
 
 # MAIN
@@ -85,12 +84,15 @@ def main():
         # Crossover
         for idx in range(int(POP_SIZE / 2)):
             parent1, parent2 = tournament(pop, bestCut, worstCut, g, K_IND)
-            offspring1, offspring2 = crossover(parent1, parent2)
+            
+            offspring1, offspring2 = multiCrossover(parent1, parent2)
+            # offspring1, offspring2 = singleCrossover(parent1, parent2)
 
-            if offspring1 not in nextPop and offspring1.count(0) == NUM_NODES / 2:
+            if (offspring1 not in nextPop) and (offspring1.count(0) == (NUM_NODES/2)):
                 nextPop.append(offspring1)
-            if offspring2 not in nextPop and offspring2.count(0) == NUM_NODES / 2:
+            if (offspring2 not in nextPop) and (offspring2.count(0) == (NUM_NODES/2)):
                 nextPop.append(offspring2)
+
 
         # Mutation
         for idx in range(len(nextPop)):
@@ -107,7 +109,7 @@ def main():
         pop = copy.deepcopy(sorted(nextPop, key=eval_with, reverse=True))
         pop = pop[:POP_SIZE]
 
-    # GA Summary
+    # Print summary of GA
     print("----------SUMMARY----------")
     print("Total Elapsed Time : ", time.time() - start_time)
     print("Generation Count: ", genCount)
