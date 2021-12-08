@@ -2,7 +2,8 @@
 operation.py --- Operators for Genetic Algorithm; generate new offsprings
 - tournament: selection operator, tournament selection
 - mutation: mutation operator, exchanging indices from each partitions
-- crossover: crossover operator, single point crossover
+- singleCrossover: crossover operator, single point crossover
+- multiCrossover: crossover operator, multi-point (here 5) crossover
 """
 
 import random as rd
@@ -61,11 +62,31 @@ def mutation(ind):
     return mutatedInd
 
 
-# Single point cross-over
-def crossover(parent1, parent2):
+# Single point crossover
+def singleCrossover(parent1, parent2):
     pivot = rd.choice(range(len(parent1)))
 
     offspring1 = parent1[:pivot] + parent2[pivot:]
     offspring2 = parent2[:pivot] + parent1[pivot:]
+
+    return offspring1, offspring2
+
+
+# Multi-point crossover
+def multiCrossover(parent1, parent2):
+    pivot = []
+
+    # cut-point: 5
+    while len(pivot) <= 5:
+        tmp = rd.choice(range(len(parent1)))
+        if not tmp in pivot:
+            pivot.append(tmp)
+    
+    # first crossover operator
+    offspring1 = parent1[:pivot[0]] + parent2[pivot[0]:pivot[1]] + parent1[pivot[1]:pivot[2]] + parent2[pivot[2]:pivot[3]] + parent1[pivot[3]:pivot[4]] + parent2[pivot[4]:]
+
+    # second crossover operator
+    complementParent = [int(not(parent2[i])) for i in range(len(parent2))]
+    offspring2 = parent1[:pivot[0]] + parent2[pivot[0]:pivot[1]] + parent1[pivot[1]:pivot[2]] + parent2[pivot[2]:pivot[3]] + parent1[pivot[3]:pivot[4]] + parent2[pivot[4]:]
 
     return offspring1, offspring2
