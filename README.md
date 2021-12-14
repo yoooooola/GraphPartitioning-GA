@@ -16,7 +16,7 @@
 > ## b. What is the topic?
 > **Graph partitioning.**
 > 
-> To given an undirected graph G = (V, E) where V is the set of n nodes and E is the set of edges between the nodes, it divides the graph into two disjoint subsets of nodes v1 and v2 so that the number of edges between the nodes in the different subsets is minimized, and the sizes of the subsets are equal.
+> To given an undirected graph G = (V, E) where V is the set of n nodes and E is the set of edges between the nodes, it divides the graph into two disjoint subsets of nodes partition1 and partition2 so that the number of edges between the nodes in the different subsets is minimized, and the sizes of the subsets are equal.
 > 
 > ## c. Design decision explaining why you select
 >> ### Parameters
