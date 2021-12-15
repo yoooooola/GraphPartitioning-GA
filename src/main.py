@@ -11,9 +11,9 @@ from evaluation import getCutsize, fitness
 # Parameters; global variables
 POP_SIZE = 300
 NUM_NODES = 100  # SHOULD BE AN EVEN NUMBER !!!
-CONNECT_PROB = 0.3
-MUT_PROB = 0.05
-STOPPING_COUNT = 20
+CONNECT_PROB = 0.1
+MUT_PROB = 0.3
+STOPPING_COUNT = 10
 K_IND = int(POP_SIZE * 0.1)  # tournament size: K individual
 
 # MAIN
