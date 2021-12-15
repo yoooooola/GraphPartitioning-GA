@@ -4,9 +4,14 @@
 > Graph partioning is a one of the NP-hard combinatorial optimization problems. We can find many papers applying genetic algorithm to the graph partiioning problem.
 > Among those papers, I decided to apply the method from the journal paper **"Genetic Algorithm and Graph Partitioning" written by Thang Nguyen Bui and Byung Ro Moon.**
 >
-> * Why is the problem important?
->     
+> * **Why Graph Partitioning is important?**
 > 
+>     1. Break down a large scale graph problem into smaller subproblems to be solved independently and in parallel
+>     
+>         → faster processing
+>     2. Many real-world applications (ex. parallel processing, VLSI design)
+>         * Google maps, where the partitioning algorithm is used to efficiently compute routes.
+>
 > (Paper link: https://ieeexplore.ieee.org/abstract/document/508322)
 >
 >
