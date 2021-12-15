@@ -57,7 +57,7 @@
 >     * Range : [1, NUM_NODES)
 > -----    
 >> ### Stopping criteria
-> * If there's **no improvement within 15 times**, the program will be terminated.
+> * If there's **no improvement within 10 times**, the program will be terminated.
 > * How many times you accept it without the improvement can be adjusted with the parameter _**STOPPING_COUNT**_.
 > -----
 >> ### Fitness function
