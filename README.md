@@ -16,7 +16,7 @@
 > ## b. What is the topic?
 > **Graph partitioning.**
 > 
-> To given an undirected graph G = (V, E) where V is the set of n nodes and E is the set of edges between the nodes, it divides the graph into two disjoint subsets of nodes partition1 and partition2 so that the number of edges between the nodes in the different subsets is minimized, and the sizes of the subsets are equal.
+> To given an undirected graph G = (V, E) where V is the set of n nodes and E is the set of edges between the nodes, it divides the graph into two disjoint subsets of nodes v1 and v2 so that the number of edges between the nodes in the different subsets is minimized, and the sizes of the subsets are equal.
 > 
 > ## c. Design decision explaining why you select
 >> ### Parameters
@@ -55,7 +55,7 @@
 >     * Range : [1, NUM_NODES)
 > -----    
 >> ### Stopping criteria
-> * If there's **no improvement within 20 times**, the program will be terminated.
+> * If there's **no improvement within 15 times**, the program will be terminated.
 > * How many times you accept it without the improvement can be adjusted with the parameter _**STOPPING_COUNT**_.
 > -----
 >> ### Fitness function
@@ -129,8 +129,8 @@
 > POP_SIZE = 300 
 > NUM_NODES = 100
 > CONNECT_PROB = 0.3
-> MUT_PROB = 0.05
-> STOPPING_COUNT = 20
+> MUT_PROB = 0.3
+> STOPPING_COUNT = 15
 > K_IND = int(POP_SIZE * 0.1)
 > ```
 > You can adjust the parameters by modifying the values of them.
