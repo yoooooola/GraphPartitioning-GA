@@ -1,6 +1,6 @@
 # Genetic Algorithm for Graph Partitioning
 
-> ## a. Why I have chosen this topic.
+> ## a. Why this topic?
 > Graph partioning is a one of the NP-complete combinatorial optimization problems. We can find many papers applying genetic algorithm to the graph partiioning problem.
 > In here, I decided to apply the method from the journal paper **"Genetic Algorithm and Graph Partitioning" written by Thang Nguyen Bui and Byung Ro Moon.**
 >
