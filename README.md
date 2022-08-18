@@ -1,6 +1,6 @@
 # Genetic Algorithm for Graph Partitioning
 
-> ## a. Justification of why you have chosen your topic.
+> ## a. Why I have chosen this topic.
 > Graph partioning is a one of the NP-complete combinatorial optimization problems. We can find many papers applying genetic algorithm to the graph partiioning problem.
 > In here, I decided to apply the method from the journal paper **"Genetic Algorithm and Graph Partitioning" written by Thang Nguyen Bui and Byung Ro Moon.**
 >
@@ -22,7 +22,7 @@
 >
 > ![image](./images/graph_partitioning.PNG)
 >
-> ## c. Design decision explaining why you select
+> ## c. Design decision
 >> ### Parameters
 > There are 5 parameters in the program.
 > 
@@ -108,7 +108,7 @@
 >     * Maintaining M best individuals from the parents' generation
 >     ![image](./images/elitism.PNG)
 >     
-> ## d. How to run your project.
+> ## d. How to run the project.
 > ```
 > cd src
 > python3 main.py
